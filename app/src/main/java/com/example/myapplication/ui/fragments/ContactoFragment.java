@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,11 +15,13 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.myapplication.R;
 import com.example.myapplication.ui.Model.Contacto;
 import com.example.myapplication.ui.viewModels.HomeViewModel;
+import com.squareup.picasso.Picasso;
 
 public class ContactoFragment extends Fragment {
 
     private static TextView nombre, email, departamento;
     private static HomeViewModel mViewModel;
+    private static ImageView foto;
 
     public ContactoFragment() {
 
@@ -33,6 +36,7 @@ public class ContactoFragment extends Fragment {
         nombre = view.findViewById(R.id.nombreRespuesta);
         email = view.findViewById(R.id.emailRespuesta);
         departamento= view.findViewById(R.id.departamentoRespuesta);
+        foto = view.findViewById(R.id.foto);
 
         cargarDatosContacto(mViewModel.getContactAtPosition(getArguments().getInt("POSITION")));
 
@@ -44,6 +48,9 @@ public class ContactoFragment extends Fragment {
         nombre.setText(contacto.getNombre() + " " + contacto.getApellido());
         email.setText(contacto.getEmail());
         departamento.setText(getArguments().getString("DEP"));
+        if (!contacto.getUrlfoto().equalsIgnoreCase("")){
+            Picasso.with(getContext()).load(contacto.getUrlfoto()).into(foto);
+        }
 
     }
 }

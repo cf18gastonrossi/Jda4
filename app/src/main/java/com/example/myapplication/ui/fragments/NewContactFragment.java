@@ -1,6 +1,10 @@
 package com.example.myapplication.ui.fragments;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +19,10 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import com.example.myapplication.R;
+import com.example.myapplication.ui.Model.Contacto;
 import com.example.myapplication.ui.viewModels.AddContactoViewModel;
+
+import static android.app.Activity.RESULT_OK;
 
 public class NewContactFragment extends Fragment {
 
@@ -35,6 +42,7 @@ public class NewContactFragment extends Fragment {
         departamento = root.findViewById(R.id.departamento);
         departamento.setText(getArguments().getString("DEPARTAMENTO"));
         confirmarContacto = root.findViewById(R.id.confirmarContacto);
+        confirmarContacto.setVisibility(View.INVISIBLE);
         cambiarFoto = root.findViewById(R.id.cambiarFoto);
         foto = root.findViewById(R.id.imageView2);
 
@@ -48,10 +56,60 @@ public class NewContactFragment extends Fragment {
         cambiarFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Contacto contacto = new Contacto(nombreApellido.getText().toString().split(" ")[0],
+                        nombreApellido.getText().toString().split(" ")[1],
+                        email.getText().toString()
+                );
+
+                if (contacto.checkInput()) {
+                    addContactoViewModel.addNewContact(contacto);
+                    cargar_imagen_galeria();
+                    cambiarFoto.setVisibility(View.INVISIBLE);
+                    confirmarContacto.setVisibility(View.VISIBLE);
+                }
 
             }
         });
 
         return root;
     }
+
+    private void cargar_imagen_galeria() {
+
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, 10);
+
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Bitmap bitmap = null;
+
+        if (requestCode == 10 && resultCode == RESULT_OK) {
+
+            Uri uri;
+            uri = data.getData();
+            addContactoViewModel.setURIfoto(uri);
+
+            try {
+
+                bitmap = MediaStore.Images.Media
+                        .getBitmap(getActivity().getContentResolver(), uri);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (bitmap != null) {
+            foto.setImageBitmap(bitmap);
+        }
+
+
+    }
 }
+

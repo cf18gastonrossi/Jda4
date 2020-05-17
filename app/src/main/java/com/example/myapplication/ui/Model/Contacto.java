@@ -13,6 +13,13 @@ public class Contacto {
         this.urlfoto = urlfoto;
     }
 
+    public Contacto(String nombre, String apellido, String email) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.urlfoto = "";
+    }
+
     public Contacto() {
 
     }
@@ -58,5 +65,13 @@ public class Contacto {
 
     public void setUrlfoto(String urlfoto) {
         this.urlfoto = urlfoto;
+    }
+
+    public boolean checkInput() {
+        if (nombre.equalsIgnoreCase("") || apellido.equalsIgnoreCase("") || email.equalsIgnoreCase("")) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
