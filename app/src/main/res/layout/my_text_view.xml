@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:text="fasdfadfasfasdf" />
+
+    <TextView
+        android:id="@+id/apellido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@+id/nombre"
+        android:layout_toRightOf="@+id/nombre"
+        android:text="gadfasf" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@id/apellido"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@+id/nombre"
+        android:layout_toRightOf="@+id/nombre"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="15dp"
+        android:height="50dp"
+        android:text="gadfafga" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/email"
+        android:layout_marginTop="43dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="10dp"
+        app:srcCompat="@android:color/background_dark"
+        android:contentDescription="TODO" />
+</RelativeLayout>

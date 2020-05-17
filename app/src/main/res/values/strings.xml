@@ -3,4 +3,13 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string-array name="departamentos_array">
+        <item>Comercial</item>
+        <item>Administracion</item>
+        <item>RRHH</item>
+        <item>Técnicos</item>
+    </string-array>
 </resources>
