@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.home;
+package com.example.myapplication.ui.viewModels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -35,5 +35,9 @@ public class HomeViewModel extends ViewModel {
 
     public LiveData<ArrayList<Contacto>> getListaContactosDept() {
         return liveData_lista_contactos;
+    }
+
+    public Contacto getContactAtPosition(int position) {
+        return lista_contactos_dept.get(position);
     }
 }
